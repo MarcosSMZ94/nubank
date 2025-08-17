@@ -25,13 +25,13 @@ public class Cliente {
     
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private UUID id;
 
     @Column(nullable = false)
     private String nome;
 
-    @OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonBackReference
     private List<Contato> contatos = new ArrayList<>();
 }

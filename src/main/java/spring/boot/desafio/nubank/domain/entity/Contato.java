@@ -23,7 +23,7 @@ public class Contato {
     
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private UUID id;
 
     @Column(nullable = false)
@@ -33,8 +33,7 @@ public class Contato {
     private String email;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "cliente_id", nullable = false)
     @JsonBackReference
-    @Column(nullable = false)
     private Cliente cliente;
 }
