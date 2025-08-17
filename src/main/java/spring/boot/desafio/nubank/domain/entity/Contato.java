@@ -36,4 +36,8 @@ public class Contato {
     @JoinColumn(name = "cliente_id", nullable = false)
     @JsonBackReference
     private Cliente cliente;
+    
+    public UUID getClienteId() {
+        return cliente != null ? cliente.getId() : null;
+    }
 }

@@ -1,12 +1,15 @@
 package spring.boot.desafio.nubank.mapper;
 
+import org.springframework.stereotype.Component;
+
 import spring.boot.desafio.nubank.domain.dto.ContatoRequest;
 import spring.boot.desafio.nubank.domain.dto.ContatoResponse;
 import spring.boot.desafio.nubank.domain.entity.Contato;
 
+@Component
 public class ContatoMapper {
     
-    public static Contato toEntity(ContatoRequest request) {
+    public Contato toEntity(ContatoRequest request) {
         if (request == null) {
             return null;
         }
@@ -14,12 +17,11 @@ public class ContatoMapper {
         Contato contato = new Contato();
         contato.setTelefone(request.telefone());
         contato.setEmail(request.email());
-        contato.setCliente(request.cliente());
-        
+
         return contato;
     }
     
-    public static ContatoResponse toResponse(Contato entity) {
+    public ContatoResponse toResponse(Contato entity) {
         if (entity == null) {
             return null;
         }
@@ -28,7 +30,7 @@ public class ContatoMapper {
             entity.getId(),
             entity.getTelefone(),
             entity.getEmail(),
-            entity.getCliente()
+            entity.getClienteId()
         );
     }
 }
