@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
 import spring.boot.desafio.nubank.domain.dto.ClienteRequest;
 import spring.boot.desafio.nubank.domain.dto.ClienteResponse;
 import spring.boot.desafio.nubank.domain.dto.ContatoResponse;
@@ -32,7 +33,7 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<ClienteResponse> criarCliente(@RequestBody ClienteRequest clienteRequest) {
+    public ResponseEntity<ClienteResponse> criarCliente(@RequestBody @Valid ClienteRequest clienteRequest) {
         ClienteResponse response = clienteService.criarCliente(clienteRequest);
         if (response == null) {
             return ResponseEntity.badRequest().build();
@@ -47,7 +48,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}/contatos")
-    public ResponseEntity<List<ContatoResponse>> obterContatosPorId(@PathVariable UUID id) {
+    public ResponseEntity<List<ContatoResponse>> obterContatosPorId(@PathVariable @Valid UUID id) {
         List<ContatoResponse> response = contatoService.obterContatosPorClienteId(id);
         if (response.isEmpty()) {
             return ResponseEntity.notFound().build();

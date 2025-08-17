@@ -27,15 +27,7 @@ public class ContatoService {
         this.clienteRepository = clienteRepository;
     }
 
-    public ContatoResponse criarContato(ContatoRequest request) {
-        if (request == null) {
-            throw new IllegalArgumentException("ContatoRequest não pode ser null");
-        }
-        
-        if (request.clienteId() == null) {
-            throw new IllegalArgumentException("ClienteId é obrigatório para criar um contato");
-        }
-        
+    public ContatoResponse criarContato(ContatoRequest request) {    
         Cliente cliente = clienteRepository.findById(request.clienteId())
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado com ID: " + request.clienteId()));
         
